@@ -1,0 +1,55 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <p>{{test}}</p>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Name Table</th>
+                        <th scope="col">Manager</th>
+                        <th scope="col">Add / Edit / Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody class="customtable">
+                    {% for item in data %}
+                    <tr>
+                        <td>{{item}}</td>
+                        <td><a href="https://www.w3schools.com">Details</a></td>
+                        <td>
+                            <!-- Call to action buttons -->
+                            <ul class="list-inline m-0">
+                                <li class="list-inline-item">
+                                    <a href="{{url_for('_detailTable.details')}}?name={{nameDatabase}}?table={{item}}"
+                                       class="btn btn-danger btn-sm rounded-1" type="button" style="background:#6c5ce7;"
+                                       data-toggle="tooltip" data-placement="top" title="Add">
+                                        <i class="far fa-plus-square"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="#"
+                                       class="btn btn-success btn-sm rounded-0" type="button"
+                                       data-toggle="tooltip" data-placement="top" title="Edit">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                </li>
+                                <li class="list-inline-item">
+                                    <a href="{{url_for('_dropTable.details')}}?name={{nameDatabase}}?table={{item}}"
+                                       class="btn btn-danger btn-sm rounded-1" type="button" style="background:red;"
+                                       data-toggle="tooltip" data-placement="top" title="Delete">
+                                        <i class="far fa-plus-square"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

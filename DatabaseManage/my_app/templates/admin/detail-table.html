@@ -1,0 +1,92 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<form action="{{url_for('_addDataTable.index')}}" method="POST">
+    <div class="table-responsive">
+        <table id="myTable" class="table table-bordered table-striped model-list">
+            <thead>
+            <tr>
+                {% for item in column %}
+                <th style="positon:relative; text-align:center;" class="column-header">
+                    {{ item }}
+                </th>
+                {% endfor %}
+                <th style="positon:relative; text-align:center;" class="column-header">Edit / Delete</th>
+                <th style="positon:relative; text-align:center;" class="column-header"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in range(index) %}
+            <tr>
+                {% for j in range(0, countColumn) %}
+                    {% if dataTable[i][j] is none or dataTable[i][j] == "":%}
+                        <td>NULL</td>
+                    {% else %}
+                        <td>{{ dataTable[i][j] }}</td>
+                    {% endif %}
+                {% endfor%}
+                <td>
+                    <div style="position:relative; text-align:center;">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a href="{{url_for('_editDataTable.details')}}?name={{name}}?table={{table}}?info={{urlEdit[i]}}"
+                                   class="btn btn-success btn-sm rounded-0" type="button"
+                                   data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{url_for('_deleteDataTable.details')}}?name={{name}}?table={{table}}?info={{urlEdit[i]}}"
+                                   class="btn btn-success btn-sm rounded-0" type="button"
+                                   data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i style="width: auto; height: auto;" class="fas fa-ban"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            {% endfor%}
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row pb-5">
+        <div class="col-sm-9">
+            <input style="position: relative; margin-top:0px; margin-left: 30px; background-color: #008CBA;"
+                   type="button" value="Add Row Table" onclick="addRows()"/>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary btn-outline-primary" onclick="submit_entry();"> Submit</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+{% block tail_js %}
+<script>
+
+    var count = {{countRow}};
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("myTable").deleteRow(i);
+    }
+
+    function addRows() {
+        count++;
+        console.log("add rows");
+        document.getElementById("myTable").innerHTML += `<tr>
+        {% for item in column %}
+            <td class="column-header">
+                <input name="{{item}}${count}" type="text" class="form-control input-sm" placeholder="{{item}}">
+            </td>
+       {% endfor %}
+       <td></td>
+       <td style="position: relative; text-align: center;">
+            <button class="btn btn-danger" onclick="deleteRow(this)">
+                <span class="align-middle">delete</span>
+            </button>
+       </td>
+       </tr>`;
+    }
+
+
+</script>
+{% endblock %}

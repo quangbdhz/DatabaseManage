@@ -1,0 +1,180 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<form method="post" action="{{url_for('_submitCreateTable.index')}}" name="formCreateTable">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Selects Database</h5>
+        </div>
+        <div class="card-body">
+            <select name="choose_database" class="form-select mb-3">
+                {% for item in my_database %}
+                <option>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="card">
+        {{Test}}
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Name Table</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-group row pb-5">
+                <div class="col-sm-10">
+                    <input name="nameTable" type="text" class="form-control" placeholder="name table">
+                </div>
+                <div class="col-sm-2">
+                    <button class="btn btn-success">Create</button>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table id="myTable" class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="position: relative; text-align: center;">Name Column</th>
+                        <th style="position: relative; text-align: center;">Types</th>
+                        <th style="position: relative; text-align: center;">PK</th>
+                        <th style="position: relative; text-align: center;">NN</th>
+                        <th style="position: relative; text-align: center;">UQ</th>
+                        <th style="position: relative; text-align: center;">B</th>
+                        <th style="position: relative; text-align: center;">UN</th>
+                        <th style="position: relative; text-align: center;">ZF</th>
+                        <th style="position: relative; text-align: center;">AI</th>
+                        <th style="position: relative; text-align: center;">G</th>
+                        <th style="position: relative; text-align: center;"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control input-sm" id="nameColumnTable1"
+                                   name="nameColumnTable1" placeholder="name column">
+                        </td>
+
+                        <td>
+                            <div style="position: relative; text-align: center;" class="form-group">
+                                <input name="chooseTypeColumn1" type="text" list="cars"/>
+                                <datalist name="" id="cars">
+                                    {% for item in datatype %}
+                                    <option>{{item.Name}}</option>
+                                    {% endfor %}
+                                </datalist>
+                            </div>
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="PK1" class="form-check-input" type="checkbox" value="PK">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="NN1" class="form-check-input" type="checkbox" value="NN">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="UQ1" class="form-check-input" type="checkbox" value="UQ">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="B1" class="form-check-input" type="checkbox" value="B">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="UN1" class="form-check-input" type="checkbox" value="UN">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="ZF1" class="form-check-input" type="checkbox" value="ZF">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="AI1" class="form-check-input" type="checkbox" value="AI">
+                        </td>
+
+                        <td style="position: relative; text-align: center;">
+                            <input name="G1" class="form-check-input" type="checkbox" value="G">
+                        </td>
+
+                        <td>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</form>
+<input style="position: relative; margin-top:0px; margin-left: 30px; background-color: #008CBA;" type="button"
+       value="Add Column Table" onclick="addRows()"/>
+<script>
+    var count = 1;
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("myTable").deleteRow(i);
+    }
+
+    function addRows() {
+        count++;
+        console.log("add rows");
+        document.getElementById("myTable").innerHTML += `<tr>
+        <td>
+            <input name="nameColumnTable${count}" type="text" class="form-control input-sm" placeholder="name column">
+        </td>
+        <td>
+            <div style="position: relative; text-align: center;" class="form-group">
+                <input name="chooseTypeColumn${count}" type="text" list="cars"/>
+                <datalist id="cars">
+                {% for item in datatype %}
+                    <option>{{item.Name}}</option>
+                {% endfor %}
+                </datalist>
+            </div>
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="PK${count}" class="form-check-input" type="checkbox" value="PK">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="NN${count}" class="form-check-input" type="checkbox" value="NN">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="UQ${count}" class="form-check-input" type="checkbox" value="UQ">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="B${count}" class="form-check-input" type="checkbox" value="B">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="UN${count}" class="form-check-input" type="checkbox" value="UN">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="ZF${count}" class="form-check-input" type="checkbox" value="ZF">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="AI${count}" class="form-check-input" type="checkbox" value="AI">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <input name="G${count}" class="form-check-input" type="checkbox" value="G">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <button class="btn btn-danger" onclick="deleteRow(this)">
+                <span class="align-middle">delete</span>
+            </button>
+        </td>
+        </tr>`;
+    }
+
+</script>
+{% endblock %}

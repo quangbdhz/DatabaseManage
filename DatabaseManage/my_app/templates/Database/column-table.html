@@ -1,0 +1,123 @@
+{% extends 'index.html' %}
+{% block body %}
+<form method="post" name="formCreateColumn">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Selects Database</h5>
+        </div>
+        <div class="card-body">
+            <select name="choose_database" class="form-select mb-3">
+                {% for item in data %}
+                <option>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Selects Table</h5>
+        </div>
+        <div class="card-body">
+            <select name="choose_database" class="form-select mb-3">
+                {% for item in data %}
+                <option>{{item}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title mb-0">Column Table</h5>
+        </div>
+        <div class="card-body">
+            <div class="portlet-body">
+                <form method="POST" action="add">
+                    <div class="table-responsive">
+                        <table id="myTable" class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="position: relative; text-align: center;">Name Column</th>
+                                <th style="position: relative; text-align: center;">Types</th>
+                                <th style="position: relative; text-align: center;">Number</th>
+                                <th style="position: relative; text-align: center;">Delete</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td>
+                                    <input type="text" class="form-control input-sm" id="nameColumnTable1"
+                                           name="nameColumnTable1" placeholder="name column">
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <select name="chooseTypeColumn1" class="form-control input-sm">
+                                            <option>True</option>
+                                            <option>False</option>
+                                        </select>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <input type="text" class="form-control input-sm" id="number1" name="number1"
+                                           placeholder="number">
+                                </td>
+
+                                <td>
+
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <input type="button" value="Add Column Table" onclick="addRows()"/>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+<script>
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("myTable").deleteRow(i);
+    }
+
+    var count = 1;
+
+    function addRows() {
+        count++;
+        console.log("add rows");
+        document.getElementById("myTable").innerHTML += `<tr>
+        <td>
+            <input name="nameColumnTable${count}" type="text" class="form-control input-sm" placeholder="name column">
+        </td>
+        <td>
+            <div class="form-group">
+                <select name="chooseTypeColumn${count}" class="form-control input-sm">
+                    <option>True</option>
+                    <option>False</option>
+                </select>
+            </div>
+        </td>
+
+        <td>
+            <input type="text" class="form-control input-sm" id="number${count}" name="number1" placeholder="number">
+        </td>
+
+        <td style="position: relative; text-align: center;">
+            <button class="btn btn-danger" onclick="deleteRow(this)">
+                <span class="align-middle">delete</span>
+            </button>
+        </td>
+        </tr>`;
+    }
+
+
+</script>
+{% endblock %}

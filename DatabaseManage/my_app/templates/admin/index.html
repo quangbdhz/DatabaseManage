@@ -1,0 +1,52 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title m-b-0">My Database</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name Database</th>
+                            <th scope="col">Manager</th>
+                            <th scope="col">Edit / Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody class="customtable">
+                        {% for item in range(countDatabase) %}
+                        <tr>
+                            <th>{{item+1}}</th>
+                            <td>{{my_database[item]}}</td>
+                            <td><a href="https://www.w3schools.com">Details</a></td>
+                            <td>
+                                <!-- Call to action buttons -->
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        <a href="{{url_for('_detailDatabase.details')}}?name={{my_database[item]}}" class="btn btn-success btn-sm rounded-0" type="button"
+                                                data-toggle="tooltip" data-placement="top" title="Edit">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" title="Delete">
+                                            <i style="width: auto; height: auto;" class="fas fa-ban"></i>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

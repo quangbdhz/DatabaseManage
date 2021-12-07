@@ -1,0 +1,36 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<form action="{{url_for('_submitEditDataTable.details')}}?{{url}}" method="POST">
+    <div class="table-responsive">
+        <table id="myTable" class="table table-bordered table-striped model-list">
+            <thead>
+            <tr>
+                {% for item in column %}
+                <th style="positon:relative; text-align:center;" class="column-header">
+                    {{ item }}
+                </th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for item in range(2,size) %}
+                <th style="positon:relative; text-align:center;" class="column-header">
+                    {% if dataTable[item] is none or dataTable[item] == "":%}
+                        <input name="{{column[item-2]}}" type="text" placeholder="Null">
+                    {% else %}
+                        <input name="{{column[item-2]}}" type="text" placeholder="{{dataTable[item]}}">
+                    {% endif %}
+                </th>
+                {% endfor %}
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row pb-5">
+        <div class="col-sm-3">
+            <input type="submit" value="submit">
+        </div>
+    </div>
+</form>
+{% endblock %}
