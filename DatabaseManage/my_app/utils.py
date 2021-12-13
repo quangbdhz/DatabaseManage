@@ -7,11 +7,19 @@ from sqlalchemy import func
 from flask_sqlalchemy import SQLAlchemy
 from urllib.parse import quote
 import requests
+from my_app.common import InfoConnection
 
 
 def add_user(email, username, password):
-    user = Users(FullName='', UserName=username, Password=password, Email=email, Phone='', IsAdmin=0, Active=1,
-                 Avatar='')
+    user = Users()
+    user.FullName = ""
+    user.UserName = username
+    user.Password = password
+    user.Email = email
+    user.Phone = ""
+    user.IsAdmin = 0
+    user.Active = 1
+    user.Avatar = ""
     db.session.add(user)
     try:
         db.session.commit()
@@ -21,19 +29,8 @@ def add_user(email, username, password):
 
 
 def get_all_database(username):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
+    conn = InfoConnection()
     data = ()
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
     try:
         with conn.cursor() as cur:
             query = "SHOW DATABASES"
@@ -66,18 +63,8 @@ def get_all_datatype():
 
 
 def get_all_table_of_database(userName):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
+    conn = InfoConnection()
     data = ()
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
 
     try:
         with conn.cursor() as cur:
@@ -127,19 +114,8 @@ def GetTable(data):
 
 
 def GetAllColumnOfTable(namedatabase, nametable):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
+    conn = InfoConnection()
     data = []
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
     try:
         with conn.cursor() as cur:
             query = "SHOW COLUMNS FROM " + namedatabase + "." + nametable
@@ -156,19 +132,8 @@ def GetAllColumnOfTable(namedatabase, nametable):
 
 
 def GetAllInfoTable(namedatabase, nametable):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
+    conn = InfoConnection()
     data = []
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
     try:
         with conn.cursor() as cur:
             query = "SHOW COLUMNS FROM " + namedatabase + "." + nametable
@@ -182,19 +147,8 @@ def GetAllInfoTable(namedatabase, nametable):
 
 
 def GetAllDataOfTableInDatabase(namedatabase, nametable):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
+    conn = InfoConnection()
     data = []
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
     try:
         with conn.cursor() as cur:
             query = "SELECT * FROM " + namedatabase + "." + nametable
@@ -220,17 +174,7 @@ def GetUrlEditTable(data):
 
 
 def CountRowTable(namedatabase, nametable):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
+    conn = InfoConnection()
     try:
         with conn.cursor() as cur:
             query = "SELECT COUNT(*) FROM " + namedatabase + "." + nametable
@@ -243,16 +187,7 @@ def CountRowTable(namedatabase, nametable):
 
 
 def UpdateInfoAddRowDatabase(namedatabase, nametable):
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
+    conn = InfoConnection()
     try:
         with conn.cursor() as cur:
             query = "UPDATE ManageUser.InfoAddRowDatabase SET NameDatabase = '" + namedatabase + "', NameTable = '" + nametable + "' WHERE Id = 1"
@@ -263,17 +198,7 @@ def UpdateInfoAddRowDatabase(namedatabase, nametable):
 
 
 def GetInfoAddRowDatabase():
-    rds_host = "dbtest.cctxaxqlrtny.us-east-1.rds.amazonaws.com"
-    name = "admin"
-    password = "quang810"
-    db_name = ""
-
-    try:
-        conn = pymysql.connect(host=rds_host, user=name, passwd=password, db=db_name, connect_timeout=5)
-    except pymysql.MySQLError as e:
-        print(e)
-        sys.exit()
-
+    conn = InfoConnection()
     data = []
     try:
         with conn.cursor() as cur:
@@ -332,28 +257,30 @@ def name(data):
     data = data[start + 5:end - 3]
     return data
 
-
-def table(data):
+def table(data, option):
     data = (data[data.find("%3") + 3:len(data) - 1])
     start = data.find("table")
-    end = data.find("info")
+    if option == 0:
+        end = data.find("info")
+    else:
+        end = data.find("column")
     data = data[start + 6:end - 3]
     return data
-
 
 def info(data, option):
     if option == 1:
         data = (data[data.find("info") + 8:len(data) - 8])
+    elif option == -1:
+        data = (data[data.find("column") + 8:len(data) - 8])
     else:
         data = (data[data.find("info") + 8:len(data) - 9])
     return data.split("%3F")
 
 
 def StringHandling(data, option):
-    listData = [name(data), table(data)]
+    listData = [name(data), table(data, option = 0)]
     listData.extend(info(data, option))
     return listData
-
 
 def ConverUrl(data):
     value = ""
@@ -368,7 +295,6 @@ def ConverUrl(data):
             value += "?" + str(data[item])
     return value
 
-
 def CovertUpdateDataTable(listA, listB, option):
     string = ""
     for item in listA:
@@ -380,7 +306,6 @@ def CovertUpdateDataTable(listA, listB, option):
                 string1 = string1 + ' AND '
         string = string + string1
     return string
-
 
 def OuputQueryUpdateDataTable(list1, list2, list3, option):
     wherelist = list2[2:len(list2)]

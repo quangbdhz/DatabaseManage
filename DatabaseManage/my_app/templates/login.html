@@ -36,10 +36,18 @@
                     </div>
 
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body"  style="padding-top: 0px;">
                             <div class="m-sm-4">
                                 <div class="text-center">
-                                    {{Test}}
+                                    {% with messages = get_flashed_messages(with_categories=true) %}
+                                    {% if messages %}
+                                    {% for message in messages%}
+                                    <div>
+                                        <p style="background: #f44336; color: #e7e9eb; font-size: 16px; padding-top: 0px;">{{message[1]}}</p>
+                                    </div>
+                                    {% endfor%}
+                                    {% endif %}
+                                    {% endwith %}
                                 </div>
                                 <form method="post" action="{{url_for('login_account')}}">
                                     <div class="mb-3">
@@ -60,7 +68,8 @@
                                         </div>
                                         <div class="col-sm-2">
                                             <small>
-                                                <a style="position: relative;text-align:right; margin-left:15px;" href="/register">Register</a>
+                                                <a style="position: relative;text-align:right; margin-left:15px;"
+                                                   href="/register">Register</a>
                                             </small>
                                         </div>
                                     </div>

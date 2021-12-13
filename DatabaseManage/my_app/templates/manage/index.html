@@ -25,7 +25,7 @@
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css"
-          rel="stylesheet" type='text/css'>
+            rel="stylesheet" type='text/css'>
     {% endblock %}
 </head>
 
@@ -43,31 +43,24 @@
                 </li>
 
                 <li class="sidebar-item active">
-                    <a class="sidebar-link" href="{{url_for('_user.index')}}">
+                    <a class="sidebar-link" href="{{url_for('_manage.index')}}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{url_for('_createDatabase.index')}}">
-                        <i class="align-middle me-2" data-feather="database"></i> <span
-                            class="align-middle">New Database</span>
+                    <a class="sidebar-link" href="{{url_for('_manageUser.index')}}">
+                        <i class="align-middle me-2" data-feather="user"></i>
+                        <span class="align-middle">User</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{url_for('_createTable.index')}}">
-                        <i class="align-middle me-2" data-feather="credit-card"></i> <span
-                            class="align-middle">New Table</span>
-                    </a>
-                </li>
-
-                <!--                <li class="sidebar-item">-->
-                <!--                    <a class="sidebar-link" href="/create-column-table">-->
-                <!--                        <i class="align-middle me-2" data-feather="sidebar"></i> <span-->
-                <!--                            class="align-middle">Column Table</span>-->
-                <!--                    </a>-->
-                <!--                </li>-->
+<!--                <li class="sidebar-item">-->
+<!--                    <a class="sidebar-link" href="/create-column-table">-->
+<!--                        <i class="align-middle me-2" data-feather="sidebar"></i> <span-->
+<!--                            class="align-middle">Column Table</span>-->
+<!--                    </a>-->
+<!--                </li>-->
             </ul>
 
 
@@ -246,9 +239,8 @@
                         {%- endif %}
 
                         <div class="dropdown-menu dropdown-menu-end">
-                            <a class="dropdown-item" href="{{url_for('_userProfile.index')}}"><i
-                                    class="align-middle me-1"
-                                    data-feather="user"></i> Profile</a>
+                            <a class="dropdown-item" href="{{url_for('_userProfile.index')}}"><i class="align-middle me-1"
+                                                                                  data-feather="user"></i> Profile</a>
                             <a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i>
                                 Analytics</a>
                             <div class="dropdown-divider"></div>
@@ -278,8 +270,7 @@
                 <div class="row text-muted">
                     <div class="col-6 text-start">
                         <p class="mb-0">
-                            <a class="text-muted" href="https://adminkit.io/"
-                               target="_blank"><strong>HikiStudio</strong></a>
+                            <a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>HikiStudio</strong></a>
                             &copy;
                         </p>
                     </div>
@@ -378,7 +369,6 @@
 			});
 		});
 
-
 </script>
 
 <script>
@@ -408,7 +398,6 @@
 				}
 			});
 		});
-
 
 </script>
 <script>
@@ -454,7 +443,6 @@
 				}
 			});
 		});
-
 
 </script>
 
@@ -525,7 +513,6 @@
 			});
 		});
 
-
 </script>
 
 <script>
@@ -539,7 +526,6 @@
 				defaultDate: defaultDate
 			});
 		});
-
 
 
 </script>

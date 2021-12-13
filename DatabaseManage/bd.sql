@@ -1,12 +1,22 @@
 USE ManageUser;
-
+DROP TABLE quangbdhz_adduser.test
 CREATE TABLE InfoAddRowDatabase
 (
 	Id INT PRIMARY KEY AUTO_INCREMENT,
 	NameDatabase nchar(100),
     NameTable nchar(100)
 );
-
+USE yukino_Oregairu;
+ALTER TABLE yukino_Oregairu.TestLaiNe ADD COLUMN testColumnab INT;
+ALTER TABLE TestLaiNe ADD COLUMN SDT varchar(10) NOT NULL;
+	
+SELECT * FROM yukino_Oregairu.TestLaiNe
+INTO OUTFILE 'F:/text.txt'
+FIELDS TERMINATED BY '|'
+SELECT * FROM yukino_Oregairu.TestLaiNe
+	
+ALTER TABLE yukino_Oregairu.TestLaiNe ADD COLUMN testColumna INT NULL;
+ALTER TABLE yukino_Oregairu.TestLaiNe ADD COLUMN testColumnb INT
 SHOW COLUMNS FROM  quangbdhz_abcda.Datatype;
 INSERT INTO quangbdhz_adduser.test(Id, name, avg) VALUES (3, 'ac', NULL);
 INSERT INTO quangbdhz_myDatabase.user(Id, FullName, UserName, Password) VALUES (5, '22', '32', '5');
@@ -23,9 +33,12 @@ SET SQL_SAFE_UPDATES = 0;
 SELECT id FROM quangbdhz_abcda.Datatype ORDER BY id DESC LIMIT 1;
 
 DROP DATABASE quangbdhz_oneShot;
-INSERT INTO quangbdhz_myDatabase.user(Id, FullName, UserName, Password) VALUES (2, "2", "2", "2")
+INSERT INTO quangbdhz_myDatabase.user(Id, FullName, UserName, Password) VALUES (2, "2", "2", "2");
 
-CREATE DATABASE yukino_Oregairu;
+INSERT INTO quangbdhz_myDatabase.user(Id, FullName, UserName, Password) VALUES (3, "3", "3", "3");
+
+CREATE DATABASE yukino_ac;
+USE yukino_ac;
 SELECT * FROM  quangbdhz_myDatabase.user;
 INSERT INTO quangbdhz_adduser.users(FullName, UserName) VALUES ("quangbdhz", "12345");	
 USE quangbdhz_oneShot;
@@ -39,15 +52,15 @@ SELECT * FROM quangbdhz_dataTestABC.user;
 SELECT * FROM ManageUser.InfoAddRowDatabase;
 
 
-CREATE TABLE quangbdhz_adduser.users
+CREATE TABLE yukino_ac.users
 (
 	Id INT PRIMARY KEY AUTO_INCREMENT,
     FullName NVARCHAR(200),
     UserName CHAR(100)
 );
 
-INSERT INTO users(FullName, UserName) 
-VALUES ('Tran Quang', 'quangbdhz');
+	INSERT INTO users(FullName, UserName) 
+	VALUES ('Tran Quang', 'quangbdhz');
 
 INSERT INTO users(FullName, UserName) 
 VALUES ('Tran Quang 1', 'quangbdhz');

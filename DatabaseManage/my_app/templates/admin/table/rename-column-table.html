@@ -1,0 +1,33 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<form action="{{url_for('_renameColumnTable.details')}}?name={{name_database}}?table={{name_table}}?column={{column}}" method="POST">
+    <div class="table-responsive">
+        <table id="tableColumn" class="table table-bordered table-striped model-list">
+            <thead>
+            <tr>
+                <th style="positon:relative; text-align:center;" class="column-header">Name Table</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Types</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Null</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Primary Key</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{getColumn[0][0]}}</td>
+                <td>{{getColumn[0][1]}}</td>
+                <td>{{getColumn[0][2]}}</td>
+                <td>{{getColumn[0][3]}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row pb-5">
+        <div class="col-sm-6">
+            <input name="newColumnName" class="form-control" placeholder="new column name" type="text"/>
+        </div>
+        <div class="col-sm-6">
+            <input type="submit" value="Submit" class="btn btn-primary btn-outline-primary">
+        </div>
+    </div>
+</form>
+{% endblock %}

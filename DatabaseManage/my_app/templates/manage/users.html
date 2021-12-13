@@ -1,0 +1,62 @@
+{% extends 'manage/index.html' %}
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title m-b-0">List Users</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Full Name</th>
+                            <th scope="col">UserName</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col" style="position: relative; text-align: center;">Lock / Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in listUsers %}
+                        <tr>
+                            <th>{{loop.index}}</th>
+                            <td>{{item.FullName}}</td>
+                            <td>{{item.UserName}}</td>
+                            <td>{{item.Email}}</td>
+                            <td>{{item.Phone}}</td>
+                            <td  style="position: relative; text-align: center;">
+                                <ul class="list-inline m-0">
+                                    <li class="list-inline-item">
+                                        {% if item.Active == 0 %}
+                                            <a href="{{url_for('_lockUser.index')}}?username={{item.UserName}}" style="padding: 0px; width: 34px; height: 26px;" class="btn btn-primary" type="button"
+                                                    data-toggle="tooltip" data-placement="top" title="Lock User">
+                                                <i style="width: 15; height: 15;"  data-feather="lock"></i>
+                                            </a>
+                                        {% else %}
+                                            <a href="{{url_for('_lockUser.index')}}?username={{item.UserName}}" class="btn btn-success btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" data-placement="top" title="Unlock User">
+                                                <i style="width: 15; height: 15;"  data-feather="unlock"></i>
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a href="{{url_for('_deleteUser.index')}}?username={{item.UserName}}" class="btn btn-sm btn-danger mt-0" type="button"
+                                               data-toggle="tooltip" data-placement="top" title="Delete User">
+                                            <i style="width: 15; height: 15;" data-feather="delete"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

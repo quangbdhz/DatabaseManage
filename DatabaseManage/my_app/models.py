@@ -11,6 +11,7 @@ class Users(db.Model, UserMixin):
     Email = db.Column(db.String(length=200), nullable=False, unique=True)
     Phone = db.Column(db.String(length=20), nullable=True)
     IsAdmin = db.Column(db.Integer(), nullable=False)
+    IsDelete = db.Column(db.Integer(), nullable=False, default = 0)
     Active = db.Column(db.Integer(), nullable=False)
     Avatar = db.Column(db.String(length=200), nullable=True)
 

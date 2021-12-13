@@ -1,0 +1,116 @@
+{% extends 'admin/master.html' %}
+{% block body %}
+<form action="{{url_for('_addColumnTable.index')}}?name={{name_database}}?table={{name_table}}" method="POST">
+    <div class="table-responsive">
+        <table id="tableColumn" class="table table-bordered table-striped model-list">
+            <thead>
+            <tr>
+                <th style="positon:relative; text-align:center;" class="column-header">Name Table</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Types</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Null</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Primary Key</th>
+                <th style="positon:relative; text-align:center;" class="column-header">Edit / Delete</th>
+                <th style="positon:relative; text-align:center;" class="column-header"></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in allInfoTable %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>
+                    <div style="position:relative; text-align:center;">
+                        <ul class="list-inline m-0">
+                            <li class="list-inline-item">
+                                <a href="{{url_for('_renameColumnTable.details')}}?name={{name_database}}?table={{name_table}}?column={{item[0]}}"
+                                   class="btn btn-success btn-sm rounded-0" type="button"
+                                   data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{{url_for('_dropColumnTable.details')}}?name={{name_database}}?table={{name_table}}?column={{item[0]}}"
+                                   class="btn btn-danger btn-sm rounded-1" type="button" style="background:#ff3838;"
+                                   data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i style="width: auto; height: auto;" class="fas fa-ban"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </td>
+                <td></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group row pb-5">
+        <div class="col-sm-9">
+            <input style="position: relative; margin-top:0px; margin-left: 30px; background-color: #008CBA;"
+                   type="button" value="Add Column Table" onclick="addRows()"/>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-primary btn-outline-primary" onclick="submit_entry();"> Submit</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+{% block tail_js %}
+<script>
+
+    var count = 0;
+    function deleteRow(r) {
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("tableColumn").deleteRow(i);
+    }
+
+    function addRows() {
+        count++;
+        console.log("add rows");
+        document.getElementById("tableColumn").innerHTML += `<tr>
+        <td>
+            <input name="nameTable${count}" type="text" class="form-control input-sm" placeholder="nameTable">
+        </td>
+        <td>
+            <div style="position: relative; text-align: height:31px; center; margin-top: 5px;" class="form-group">
+                <input name="chooseTypeColumn${count}" type="text" list="cars"/>
+                <datalist id="cars">
+                {% for item in datatype %}
+                    <option>{{item.Name}}</option>
+                {% endfor %}
+                </datalist>
+            </div>
+        </td>
+        <td>
+             <select name="chooseNull${count}" style="position: relative; margin-top: 16px;" class="form-select mb-3">
+                <option selected>YES</option>
+                <option>NO</option>
+             </select>
+        </td>
+        <td>
+
+                <select name="choosePRI${count}" style="position: relative; margin-top: 16px;" class="form-select mb-3">
+                    <option selected></option>
+                    {% if checkPRI == 0 %}
+                        <option>PRI</option>
+                    {% else %}
+                    {% endif %}
+                </select>
+
+        </td>
+        <td>
+        </td>
+        <td style="position: relative; text-align: center;">
+            <button class="btn btn-danger" onclick="deleteRow(this)">
+                <span class="align-middle">delete</span>
+            </button>
+        </td>
+        </tr>`;
+    }
+
+</script>
+{% endblock %}

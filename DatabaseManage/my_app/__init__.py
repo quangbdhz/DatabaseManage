@@ -17,7 +17,7 @@ login_manager = LoginManager(app=app)
 login_manager.login_view = "login_account"
 login_manager.login_message_category = 'info'
 
-from my_app import routes, user
+from my_app import routes, admin
 from my_app import admin
 
 babel = Babel(app=app)

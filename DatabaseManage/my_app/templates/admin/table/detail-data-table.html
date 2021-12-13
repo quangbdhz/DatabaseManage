@@ -1,0 +1,36 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h4 style="font-weight: bold; color: black;">{{name_database}}</h4>
+                </div>
+                <div class="table-responsive">
+                    <p style = "position: relative; margin-left: 30px; color: #2e86de; font-size: 15px;">Table: {{name_table}}</p>
+                    <table class="table">
+                        <thead class="thead-light">
+                        <tr>
+                            {% for item in nameColumn %}
+                                <th scope="col">{{item}}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in allDataTable %}
+                        <tr>
+                            {% for index in range(column) %}
+                                <th scope="col" style="color: #57606f;">{{item[index]}}</th>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
