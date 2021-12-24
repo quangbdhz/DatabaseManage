@@ -23,6 +23,62 @@
 - 19110443    Trần Quang
 - 19110501    Võ Thành Vinh
 
+## Chạy trên Localhost
+
+Clone project từ github
+
+```bash
+  git clone https://github.com/quangbdhz/DatabaseManage.git
+```
+
+Truy cập thư mục chứa project
+
+```bash
+  cd DatabaseManage
+```
+
+Tạo môi trường ảo
+
+```bash
+  virtualenv venv
+```
+
+Kích hoạt môi trường ảo
+
+```bash
+  .\venv\Scripts\activate
+```
+
+Cài đặt các thư viện 
+
+```bash
+  pip install -r requirements.txt
+```
+
+Chạy file models
+
+```bash
+  python 3
+```
+
+```bash
+  from my_app import db
+```
+
+```bash
+  from my_app.models import *
+```
+
+```bash
+  db.create_all()
+```
+
+Chạy file run.py
+
+```bash
+  python3 run.py
+```
+
 ## Deploy lên AWS EC2
 
 Để deploy project, thực hiện các lệnh sau
@@ -59,6 +115,24 @@ Install các thư viện mà project yêu cầu
   python3 -m pip install -r requirements.txt
 ```
 
+Chạy file models
+
+```bash
+  python 3
+```
+
+```bash
+  from my_app import db
+```
+
+```bash
+  from my_app.models import *
+```
+
+```bash
+  db.create_all()
+```
+
 Truy cập file run.py
 
 ```bash
@@ -76,7 +150,6 @@ sang cấu hình phù hợp với máy ảo EC2
 
 ```python3
     from my_app import app
-
     app.run(host='0.0.0.0', port=8080)
 ```
 
