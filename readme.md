@@ -142,15 +142,15 @@ Truy cập file run.py
 Thay đổi từ 
 
 ```python3
-    from my_app import app
-    app.run(debug=True)
+  from my_app import app
+  app.run(debug=True)
 ```
 
 sang cấu hình phù hợp với máy ảo EC2
 
 ```python3
-    from my_app import app
-    app.run(host='0.0.0.0', port=8080)
+  from my_app import app
+  app.run(host='0.0.0.0', port=8080)
 ```
 
 Sau khi thực hiện các cấu hình cần thiết, để chạy chương trình thực hiện lệnh
