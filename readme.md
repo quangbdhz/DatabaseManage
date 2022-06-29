@@ -11,17 +11,17 @@
 
 ## Công nghệ sử dụng
 
-##### Client: HTML, CSS3, BOOTSTRAP 4, JavaScript
+##### Front End: HTML, CSS3, BOOTSTRAP 4, JavaScript
 
-##### Server: Flask Framework, AWS Lambda, AWS SQS, AWS EC2
+##### Back End: Flask Framework, AWS Lambda, AWS SQS, AWS EC2
 
-##### Database: MySQL
+##### Database: AWS RDS (MySQL)
 
 ## Thành viên của nhóm
 
 - 19110470	Nguyễn Công Tiến
-- 19110443    Trần Quang
-- 19110501    Võ Thành Vinh
+- 19110443  Trần Quang
+- 19110501  Võ Thành Vinh
 
 ## Chạy trên Localhost
 
